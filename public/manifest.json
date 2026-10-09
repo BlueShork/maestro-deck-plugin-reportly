@@ -1,0 +1,10 @@
+{
+  "id": "reportly",
+  "name": "Reportly",
+  "version": "1.0.0",
+  "minAppVersion": "1.3.0",
+  "entry": "index.html",
+  "icon": "icon.svg",
+  "panel": { "title": "Reportly" },
+  "permissions": { "http": [], "open": [], "secrets": false, "runs": true }
+}
