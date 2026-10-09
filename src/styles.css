@@ -22,3 +22,8 @@ button { font: inherit; cursor: pointer; }
 .error { color: hsl(var(--destructive)); font-size: 12px; margin: 0; }
 .error ul { margin: 4px 0 0; padding-left: 16px; }
 .banner { margin: 0; padding: 8px; border: 1px solid hsl(var(--border)); background: hsl(var(--accent)); }
+.preview { width: 100%; height: auto; border: 1px solid hsl(var(--border)); border-radius: var(--radius); }
+.actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.actions .link { align-self: center; margin-left: auto; }
+.secondary { background: none; color: hsl(var(--foreground)); border: 1px solid hsl(var(--border)); border-radius: var(--radius); padding: 8px 12px; }
+.secondary:disabled { opacity: .5; cursor: default; }
