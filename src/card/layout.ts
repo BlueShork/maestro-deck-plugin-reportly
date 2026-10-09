@@ -83,3 +83,7 @@ export function deviceLabel(r: RunReport): string {
   if (r.device.platform === "cloud") return r.device.name;
   return `${PLATFORM[r.device.platform] ?? r.device.platform} · ${r.device.name}`;
 }
+
+export function countLabel(r: RunReport): string {
+  return `${r.items.length} ${unit(r, r.items.length)}`;
+}

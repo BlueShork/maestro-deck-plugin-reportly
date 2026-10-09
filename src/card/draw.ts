@@ -18,6 +18,7 @@ import {
   STATS_H,
   WIDTH,
   banner,
+  countLabel,
   deviceLabel,
   formatDuration,
   headerMeta,
@@ -118,7 +119,7 @@ export async function renderCard(report: RunReport, mode: Mode): Promise<string>
   ctx.font = display(700, 52);
   ctx.fillText(banner(report).title, X0 + 22, y + 106);
   label(
-    `${report.items.length} ${report.kind === "all" ? "flows" : "steps"} · ${formatDuration(report.durationMs)}`,
+    `${countLabel(report)} · ${formatDuration(report.durationMs)}`,
     X0 + 24,
     y + 138,
   );

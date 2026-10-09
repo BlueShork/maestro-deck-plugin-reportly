@@ -12,6 +12,7 @@ import {
   ROW_H,
   STATS_H,
   banner,
+  countLabel,
   deviceLabel,
   formatDuration,
   headerMeta,
@@ -123,5 +124,12 @@ describe("deviceLabel", () => {
       deviceLabel(report([], { device: { platform: "cloud", name: "Maestro Deck Cloud · ios" } })),
     ).toBe("Maestro Deck Cloud · ios");
     expect(deviceLabel(report([], { device: null }))).toBe("Unknown device");
+  });
+});
+
+describe("countLabel", () => {
+  it("pluralises flows and steps", () => {
+    expect(countLabel(report([item("a")]))).toBe("1 flow");
+    expect(countLabel(report([item("a"), item("b")], { kind: "flow" }))).toBe("2 steps");
   });
 });
