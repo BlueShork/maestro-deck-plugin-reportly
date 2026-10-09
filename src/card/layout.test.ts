@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import type { ReportItem, RunReport } from "../report";
 import {
-  BANNER_H,
+  HERO_H,
   DEVICE_H,
   ERROR_H,
   FOOTER_H,
@@ -10,6 +10,7 @@ import {
   MAX_ROWS,
   PAD,
   ROW_H,
+  STATS_H,
   banner,
   deviceLabel,
   formatDuration,
@@ -81,7 +82,7 @@ describe("layoutReport", () => {
     expect(l.rows.map((r) => r.name)).toEqual(["b", "a", "c"]);
     expect(l.rows[0].error).toBe("Element not found");
     expect(l.height).toBe(
-      HEADER_H + BANNER_H + DEVICE_H + 3 * ROW_H + ERROR_H + FOOTER_H + 2 * PAD,
+      HEADER_H + HERO_H + STATS_H + DEVICE_H + 3 * ROW_H + ERROR_H + FOOTER_H + 2 * PAD,
     );
   });
 
@@ -95,7 +96,7 @@ describe("layoutReport", () => {
     const l = layoutReport(report([], { status: "stopped" }));
     expect(l.rows).toEqual([]);
     expect(l.empty).toBe("No flow finished");
-    expect(l.height).toBe(HEADER_H + BANNER_H + DEVICE_H + ROW_H + FOOTER_H + 2 * PAD);
+    expect(l.height).toBe(HEADER_H + HERO_H + STATS_H + DEVICE_H + ROW_H + FOOTER_H + 2 * PAD);
   });
 
   it("truncates long names and errors", () => {

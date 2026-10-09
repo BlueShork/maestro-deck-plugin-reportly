@@ -11,7 +11,6 @@ export interface Palette {
   success: string;
   error: string;
   warning: string;
-  logo: string;
 }
 
 export const PALETTES: Record<Mode, Palette> = {
@@ -25,7 +24,6 @@ export const PALETTES: Record<Mode, Palette> = {
     success: "#22c55e",
     error: "#ff3b30",
     warning: "#ffaf00",
-    logo: "#ffffff",
   },
   light: {
     bg: "#fbfaf5",
@@ -37,6 +35,5 @@ export const PALETTES: Record<Mode, Palette> = {
     success: "#1b9e4b",
     error: "#e10500",
     warning: "#d68400",
-    logo: "#0b0b0b",
   },
 };

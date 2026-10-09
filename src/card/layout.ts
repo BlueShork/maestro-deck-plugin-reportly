@@ -1,13 +1,15 @@
 import type { ReportItem, RunReport } from "../report";
 
 export const WIDTH = 1200;
-export const PAD = 48;
-export const HEADER_H = 88;
-export const BANNER_H = 112;
-export const DEVICE_H = 40;
-export const ROW_H = 44;
-export const ERROR_H = 24;
-export const FOOTER_H = 56;
+// Flat cells split by hairlines, as in the app and the landing.
+export const PAD = 40;
+export const HEADER_H = 72;
+export const HERO_H = 168;
+export const STATS_H = 88;
+export const DEVICE_H = 44;
+export const ROW_H = 48;
+export const ERROR_H = 22;
+export const FOOTER_H = 52;
 export const MAX_ROWS = 25;
 const NAME_MAX = 70;
 const ERROR_MAX = 120;
@@ -64,7 +66,7 @@ export function layoutReport(r: RunReport) {
     rows,
     overflow,
     empty,
-    height: HEADER_H + BANNER_H + DEVICE_H + listH + FOOTER_H + 2 * PAD,
+    height: HEADER_H + HERO_H + STATS_H + DEVICE_H + listH + FOOTER_H + 2 * PAD,
   };
 }
 
