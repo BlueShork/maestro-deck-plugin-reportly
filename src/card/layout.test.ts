@@ -11,7 +11,9 @@ import {
   PAD,
   ROW_H,
   banner,
+  deviceLabel,
   formatDuration,
+  headerMeta,
   layoutReport,
   truncate,
 } from "./layout";
@@ -100,5 +102,25 @@ describe("layoutReport", () => {
     const l = layoutReport(report([item("n".repeat(200), "failed", "e".repeat(300))]));
     expect(l.rows[0].name.length).toBe(70);
     expect(l.rows[0].error!.length).toBe(120);
+  });
+});
+
+describe("headerMeta", () => {
+  it("skips the project name when it is already the title", () => {
+    expect(headerMeta(report([]), "Oct 9")).toBe("main  ·  Oct 9");
+    expect(headerMeta(report([], { title: "Login" }), "Oct 9")).toBe("shop  ·  main  ·  Oct 9");
+    expect(
+      headerMeta(report([], { title: "Login", project: { name: "shop", branch: null } }), "Oct 9"),
+    ).toBe("shop  ·  Oct 9");
+  });
+});
+
+describe("deviceLabel", () => {
+  it("names the platform, except for cloud runs whose name already says it", () => {
+    expect(deviceLabel(report([]))).toBe("Android · Pixel 8");
+    expect(
+      deviceLabel(report([], { device: { platform: "cloud", name: "Maestro Deck Cloud · ios" } })),
+    ).toBe("Maestro Deck Cloud · ios");
+    expect(deviceLabel(report([], { device: null }))).toBe("Unknown device");
   });
 });

@@ -13,7 +13,9 @@ import {
   ROW_H,
   WIDTH,
   banner,
+  deviceLabel,
   formatDuration,
+  headerMeta,
   layoutReport,
 } from "./layout";
 import { drawLogo } from "./logo";
@@ -21,7 +23,6 @@ import { PALETTES, type Mode, type Palette } from "./theme";
 
 const SCALE = 2;
 const DOT: Record<string, keyof Palette> = { passed: "success", failed: "error", skipped: "muted" };
-const PLATFORM: Record<string, string> = { android: "Android", ios: "iOS", web: "Web", cloud: "Cloud" };
 
 async function fontsReady() {
   await Promise.all([
@@ -64,10 +65,7 @@ export async function renderCard(report: RunReport, mode: Mode): Promise<string>
     dateStyle: "medium",
     timeStyle: "short",
   }).format(report.startedAt);
-  const meta = [report.project.name, report.project.branch, when]
-    .filter(Boolean)
-    .join("  ·  ");
-  ctx.fillText(meta, right, y + 52);
+  ctx.fillText(headerMeta(report, when), right, y + 52);
   ctx.textAlign = "left";
   y += HEADER_H;
 
@@ -97,10 +95,7 @@ export async function renderCard(report: RunReport, mode: Mode): Promise<string>
   // Device.
   ctx.font = font(400, 15);
   ctx.fillStyle = p.muted;
-  const device = report.device
-    ? `${PLATFORM[report.device.platform] ?? report.device.platform} · ${report.device.name}`
-    : "Unknown device";
-  ctx.fillText(device, PAD, y + 24);
+  ctx.fillText(deviceLabel(report), PAD, y + 24);
   y += DEVICE_H;
 
   // Rows.

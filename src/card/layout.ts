@@ -67,3 +67,17 @@ export function layoutReport(r: RunReport) {
     height: HEADER_H + BANNER_H + DEVICE_H + listH + FOOTER_H + 2 * PAD,
   };
 }
+
+/** Project · branch · date, without repeating the project when it is the title (Run All). */
+export function headerMeta(r: RunReport, when: string): string {
+  const project = r.project.name === r.title ? null : r.project.name;
+  return [project, r.project.branch, when].filter(Boolean).join("  ·  ");
+}
+
+const PLATFORM: Record<string, string> = { android: "Android", ios: "iOS", web: "Web" };
+
+export function deviceLabel(r: RunReport): string {
+  if (!r.device) return "Unknown device";
+  if (r.device.platform === "cloud") return r.device.name;
+  return `${PLATFORM[r.device.platform] ?? r.device.platform} · ${r.device.name}`;
+}
